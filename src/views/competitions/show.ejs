@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+    <% include ../static/partials/navbar.ejs %>
+
+    <main class="container">
+      <h1><%= competition.title %></h1>
+
+      <p><%= competition.description %></p>
+      <p>Max words: <%= competition.maxwords %></p>
+      <p>Ends: <%= competition.enddate.getDate() %>/<%= competition.enddate.getMonth() %>/<%= competition.enddate.getUTCFullYear() %></p>
+      <br>
+      <a href="/competitions" class="btn btn-primary btn-lg">Back to competitions</a>
+      <a href="#" class="btn btn-primary btn-lg">Enter competition</a>
+    </main>
+
+    <% include ../static/partials/baseScripts.ejs %>
+
+  </body>
+</html>

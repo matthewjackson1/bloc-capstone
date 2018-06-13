@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+    <% include ../static/partials/navbar.ejs %>
+
+    <main class="container">
+
+      <h1>Add a Competition</h1>
+
+      <form action="/competitions/create" method="post">
+        <div class="form-group">
+          <label for="title">Competition title</label>
+          <input type="text" class="form-control" name="title" aria-describedby="titleHelp">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea rows="4" class="form-control" name="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="description">Word limit</label>
+            <input type="text" class="form-control" name="maxwords"></input>
+        </div>
+        <div class="form-group">
+                <label for="description">End date</label>
+                <input type="date" class="form-control" name="enddate"></input>
+        </div>
+        <button type="submit" class="btn btn-primary">Start Competition</button>
+      </form>
+
+    </main>
+
+    <% include ../static/partials/baseScripts.ejs %>
+
+  </body>
+</html>

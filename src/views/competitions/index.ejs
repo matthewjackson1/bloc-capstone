@@ -8,6 +8,11 @@
       <% include ../static/partials/navbar.ejs %>
 
       <h1>Competitions</h1>
+      
+      <% if(currentUser && currentUser.isAdmin()) { %>
+        <a href="/competitions/new" class="btn btn-primary btn-lg">Add a competition</a>
+        <br><br>
+      <% } %>
 
       <ul class="list-group">
 <!-- #1 -->
@@ -15,7 +20,13 @@
 <!-- #2 -->
           <li class="list-group-item">
             <a href="/competitions/<%= competition.id %>"> <%= competition.title %> </a> 
+            <br>
             <%= competition.description %>
+            <br>
+            Max words: <%= competition.maxwords %><br>
+            Ends: <%= competition.enddate.getDate() %>/<%= competition.enddate.getMonth() %>/<%= competition.enddate.getUTCFullYear() %>
+            <br>
+            <a href="/competitions/<%= competition.id %>" class="btn btn-primary btn-lg">View details</a>
           </li>
         <% }) %>
       </ul>

@@ -9,7 +9,7 @@
 } 
 
 body {
-    padding-top: 70px;
+    padding-top: 90px;
     font-family: "sofia-pro-medium";
  
   }
@@ -26,6 +26,7 @@ body {
 #homeJumbotron {
   background-image:url("/images/home/writingpic1.jpeg");
   background-size:100%;
+  margin-top: 0px !important;
   border-radius: 0px !important;
 }
 
@@ -52,8 +53,18 @@ body {
   color: white !important;
 }
 
+#signup {
+  border: 1px solid white;
+}
+
+#or {
+  padding-left:0px;
+  padding-right:10px;
+}
+
+
 .nav-item{
-  padding-left: 10px;
+ 
 }
 
 .fas {
@@ -94,6 +105,16 @@ body {
 
 }
 
+@media screen and (max-width: 991px) {
+  #signup {
+    border: none;
+  }
+
+  #or {
+    display:none;
+  }
+}
+
 @media screen and (max-width: 768px) {
 
   #homeJumbotron {
@@ -105,6 +126,7 @@ body {
     max-width: 300px;
     font-size: 26px;
   }
+
 
 
 }

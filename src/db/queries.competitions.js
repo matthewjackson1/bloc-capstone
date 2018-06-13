@@ -13,5 +13,30 @@ module.exports = {
     .catch((err) => {
       callback(err);
     })
+  },
+
+  addCompetition(newCompetition, callback){
+    return Competition.create({
+      title: newCompetition.title,
+      description: newCompetition.description,
+      maxwords: newCompetition.maxwords,
+      enddate: newCompetition.enddate
+    })
+    .then((competition) => {
+      callback(null, competition);
+    })
+    .catch((err) => {
+      callback(err);
+    })
+  },
+
+  getCompetition(id, callback){
+    return Competition.findById(id)
+    .then((competition) => {
+      callback(null, competition);
+    })
+    .catch((err) => {
+      callback(err);
+    })
   }
 }
