@@ -38,14 +38,16 @@ module.exports = {
   signIn(req, res, next){
     passport.authenticate("local")(req, res, function () {
       if(!req.user){
-        console.log(req.user);
+        console.log("not req user");
         req.flash("notice", "Sign in failed. Please try again.");
         res.redirect("/users/sign_in");
       } else {
+        console.log("success");
         req.flash("notice", "You've successfully signed in!");
         res.redirect("/");
       } 
-    })
+    });
+
   },
 
   signOut(req, res, next){

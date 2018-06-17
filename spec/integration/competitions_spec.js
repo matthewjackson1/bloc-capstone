@@ -13,7 +13,9 @@ beforeEach((done) => {
 
         Competition.create({
         title: "The Vessel",
-        description: "There is a lot of them"
+        description: "There is a lot of them",
+        startdate: new Date(),
+        enddate: new Date()
         })
         .then((competition) => {
         this.competition = competition;
@@ -150,9 +152,10 @@ beforeEach((done) => {
                 describe("GET /competitions", () => {
 
                     it("should return a status code 200 and all competitions", (done) => {
-        
+                        
                         //#3
                             request.get(base, (err, res, body) => {
+                                
                                 expect(res.statusCode).toBe(200);
                                 expect(err).toBeNull();
                                 expect(body).toContain("Competitions");
@@ -164,50 +167,15 @@ beforeEach((done) => {
         
                     describe("GET /competitions/new", () => {
         
-                        it("should render a new competition form", (done) => {
+                        it("should not render a new competition form", (done) => {
                             request.get(`${base}new`, (err, res, body) => {
-                            expect(err).toBeNull();
-                            expect(body).toContain("Add a Competition");
+                            expect(body).not.toContain("Add a Competition");
                             done();
                             });
                         });
         
                     });   
                     
-                    describe("POST /competitions/create", () => {
-                        const options = {
-                        url: `${base}create`,
-                        form: {
-                            title: "A journey",
-                            description: "Describe an emotional travelling experience",
-                            startdate: new Date(),
-                            enddate: new Date(),
-                            maxwords: 300
-                        }
-                        };
-                
-                        it("should create a new competition and redirect", (done) => {
-                
-                //#1
-                        request.post(options,
-                
-                //#2
-                            (err, res, body) => {
-                            Competition.findOne({where: {title: "A journey"}})
-                            .then((competition) => {
-                                expect(res.statusCode).toBe(303);
-                                expect(competition.title).toBe("A journey");
-                                expect(competition.description).toBe("Describe an emotional travelling experience");
-                                done();
-                            })
-                            .catch((err) => {
-                                console.log(err);
-                                done();
-                            });
-                            }
-                        );
-                        });
-                    });
         
                     describe("GET /competitions/:id", () => {
         

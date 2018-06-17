@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   User.associate = function(models) {
     // associations can be defined here
+    User.hasMany(models.Entry, {
+      foreignKey: "userId",
+      as: "entries"
+    });
   };
   User.prototype.isAdmin = function() {
     return this.role === "admin";

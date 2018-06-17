@@ -7,14 +7,39 @@
     <% include ../static/partials/navbar.ejs %>
 
     <main class="container">
-      <h1><%= competition.title %></h1>
 
-      <p><%= competition.description %></p>
-      <p>Max words: <%= competition.maxwords %></p>
-      <p>Ends: <%= competition.enddate.getDate() %>/<%= competition.enddate.getMonth() %>/<%= competition.enddate.getUTCFullYear() %></p>
-      <br>
-      <a href="/competitions" class="btn btn-primary btn-lg">Back to competitions</a>
-      <a href="#" class="btn btn-primary btn-lg">Enter competition</a>
+      <a href="/competitions" class="back-link">< Back to competitions</a>
+
+      <section id="comp-info">
+        <h1><%= competition.title %></h1>
+        <p class="comp-details-desc">
+          <%= competition.description %>
+        </p>
+        <p>
+          Max words: <%= competition.maxwords %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Ends: <%= competition.enddate.getDate() %>/<%= competition.enddate.getMonth() %>/<%= competition.enddate.getUTCFullYear() %>
+        </p>
+      </section>
+
+      <section id="comp-entry">
+        <% if(currentUser) { %>
+          <% include ../entries/new.ejs %>
+        <% } else { %>
+          <p>Please <a href="/users/sign_in">login</a> or <a href="/users/sign_up">sign up</a> to enter!</p>
+        <% } %>
+      </section>
+
+      <section id="entry-list">
+            <% if(competition.entries) { %>
+              <h2>Previous entries</h2>
+              <% competition.entries.forEach((entry) => { %>
+                <%- include("../entries/show.ejs", {entry}) %>
+              <% }) %>
+            <% } %>
+            <hr>
+      </section>
+
+      <a href="/competitions" class="btn btn-primary">Back to competitions</a>
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>

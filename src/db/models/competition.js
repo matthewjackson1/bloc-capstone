@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Competition.associate = function(models) {
     // associations can be defined here
+    Competition.hasMany(models.Entry, {
+      foreignKey: "competitionId",
+      as: "entries"
+    });
   };
   return Competition;
 };

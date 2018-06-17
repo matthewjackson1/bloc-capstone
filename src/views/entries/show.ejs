@@ -1,0 +1,9 @@
+
+<% if(entry) { %>
+    <div>
+      <hr>
+        <span class="entry-title"><%= entry.title %></span>
+        <span class="entry-author">by <%= entry.User.username %></span>
+        <span class="entry-body"></span><%= entry.body %></span>
+    </div>
+  <% } %>

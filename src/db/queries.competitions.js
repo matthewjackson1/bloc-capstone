@@ -1,4 +1,6 @@
 const Competition = require("./models").Competition;
+const Entry = require("./models").Entry;
+const User = require("./models").User;
 
 module.exports = {
 
@@ -31,7 +33,13 @@ module.exports = {
   },
 
   getCompetition(id, callback){
-    return Competition.findById(id)
+    return Competition.findById(id, {
+      include: [
+        {model: Entry, as: "entries", include: [
+          {model: User }
+        ]}
+      ]
+    })
     .then((competition) => {
       callback(null, competition);
     })

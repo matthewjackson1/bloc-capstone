@@ -10,23 +10,22 @@
       <h1>Competitions</h1>
       
       <% if(currentUser && currentUser.isAdmin()) { %>
-        <a href="/competitions/new" class="btn btn-primary btn-lg">Add a competition</a>
-        <br><br>
+        <a href="/competitions/new" class="btn btn-primary">Add a competition</a>
       <% } %>
 
-      <ul class="list-group">
-<!-- #1 -->
+      <ul class="list-group" id="comp-list">
         <% competitions.forEach((competition) => { %>
-<!-- #2 -->
-          <li class="list-group-item">
-            <a href="/competitions/<%= competition.id %>"> <%= competition.title %> </a> 
-            <br>
-            <%= competition.description %>
-            <br>
-            Max words: <%= competition.maxwords %><br>
+          <li class="list-group-item comp-list-item">
+            <a href="/competitions/<%= competition.id %>" class="comp-title"><h4><%= competition.title %></h3></a> 
+            <span class="comp-desc">
+              <%= competition.description %>
+            </span>
+            <span class="comp-details">Max words: <%= competition.maxwords %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Ends: <%= competition.enddate.getDate() %>/<%= competition.enddate.getMonth() %>/<%= competition.enddate.getUTCFullYear() %>
-            <br>
-            <a href="/competitions/<%= competition.id %>" class="btn btn-primary btn-lg">View details</a>
+            </span>
+            <a href="/competitions/<%= competition.id %>" class="btn btn-primary view-details">
+              View details
+            </a>
           </li>
         <% }) %>
       </ul>
