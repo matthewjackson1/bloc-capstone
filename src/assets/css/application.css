@@ -163,8 +163,9 @@ a {
 
 }
 .entry-body{
-  display:block;
   margin-top: 10px;
+  white-space: pre-wrap;
+  display:block;
 }
 
 /*                   */
